@@ -6,6 +6,66 @@
 - 本番: RailwayのマネージドPostgres
 - 記事・タグ・認証、すべて同じDBに統合して管理する（Markdownファイルは使わない）
 
+## ER図
+
+```mermaid
+erDiagram
+    POSTS ||--o{ POST_TAG : "付与される"
+    TAGS ||--o{ POST_TAG : "付与される"
+    USERS ||--o{ PERSONAL_ACCESS_TOKENS : "発行する"
+
+    POSTS {
+        bigserial id PK
+        varchar title
+        varchar slug UK
+        varchar status
+        text excerpt
+        text content
+        varchar thumbnail
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    TAGS {
+        bigserial id PK
+        varchar name UK
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    POST_TAG {
+        bigint post_id FK
+        bigint tag_id FK
+    }
+
+    USERS {
+        bigserial id PK
+        varchar name
+        varchar email UK
+        varchar password
+        timestamp email_verified_at
+        varchar remember_token
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    PERSONAL_ACCESS_TOKENS {
+        bigserial id PK
+        varchar tokenable_type
+        bigint tokenable_id
+        varchar name
+        varchar token UK
+        text abilities
+        timestamp last_used_at
+        timestamp expires_at
+        timestamp created_at
+        timestamp updated_at
+    }
+```
+
+- `users`と`personal_access_tokens`の関連は、Laravel標準の`morphs`（`tokenable_type`/`tokenable_id`）によるポリモーフィック関連。通常のFKではないが、ER図上は`users`からの関連として表現している
+- `posts`と`users`の間に関連はない（前述のとおり著者情報を持たない設計のため）
+
 ## テーブル
 
 ### `posts`
@@ -60,7 +120,4 @@
 
 トークンの有効期限（30日）はこのテーブルの`expires_at`で管理。
 
-## この変更に伴う旧方針の置き換え
-
-- Markdownファイル（`storage/app/posts/*.md`）によるfrontmatter管理は**廃止**。[docs/archive/frontmatter-schema.md](../archive/frontmatter-schema.md)・[docs/backend/storage-layout.md](./storage-layout.md)の記事部分は本ドキュメントに置き換え
-- 画像ファイルの保存方針（ローカル`public`ディスク／本番bucket）は変更なし
+画像ファイルの保存方針（ローカル`public`ディスク／本番bucket）は[docs/backend/storage-layout.md](./storage-layout.md)参照。
