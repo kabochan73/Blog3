@@ -21,9 +21,9 @@
 
 ## フェーズ1: 土台
 
-- [ ] 1. Laravel初期化（scaffold一式。Pestインストール含む）
-- [ ] 2. Next.js初期化（scaffold一式。Vitest + React Testing Libraryセットアップ含む）
-- [ ] 3. Docker構成（`docker-compose.yml`, `backend/Dockerfile`, `backend/docker/nginx.conf`, `.env.example`×2）
+- [x] 1. Laravel初期化（scaffold一式。Pestインストール含む）
+- [x] 2. Next.js初期化（scaffold一式。Vitest + React Testing Libraryセットアップ含む）
+- [x] 3. Docker構成（`docker-compose.yml`, `backend/Dockerfile`, `backend/docker/nginx.conf`, `.env.example`×2）
 
 ## フェーズ2: 認証
 
