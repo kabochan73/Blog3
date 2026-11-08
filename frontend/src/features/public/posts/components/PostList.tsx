@@ -1,0 +1,30 @@
+import { cacheLife } from "next/cache";
+import { notFound } from "next/navigation";
+
+import { publicApiFetch } from "@/shared/lib/api";
+import type { PaginatedCollection, PostListItem } from "../types";
+import { PostCard } from "./PostCard";
+
+export async function PostList({ page, tag }: { page: number; tag?: string }) {
+  "use cache";
+  cacheLife("max");
+
+  const query = new URLSearchParams({ page: String(page) });
+  if (tag) {
+    query.set("tag", tag);
+  }
+
+  const { data: posts, meta } = await publicApiFetch<PaginatedCollection<PostListItem>>(`/api/posts?${query}`);
+
+  if (page > meta.last_page) {
+    notFound();
+  }
+
+  return (
+    <div className="flex flex-col gap-10">
+      {posts.map((post) => (
+        <PostCard key={post.slug} post={post} />
+      ))}
+    </div>
+  );
+}

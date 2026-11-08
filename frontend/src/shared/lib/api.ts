@@ -4,6 +4,11 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://loca
 
 const API_INTERNAL_BASE_URL = process.env.API_INTERNAL_BASE_URL ?? API_BASE_URL;
 
+/** Backend-relative image paths (e.g. `/storage/images/...`) need the API's own origin prefixed to load cross-origin. */
+export function resolveImageUrl(url: string): string {
+  return url.startsWith("/") ? `${API_BASE_URL}${url}` : url;
+}
+
 export class ApiError extends Error {
   status: number;
   body: unknown;
