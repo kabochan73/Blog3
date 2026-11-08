@@ -17,6 +17,7 @@ class TagAdminResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'count' => $this->posts_count,
         ];
     }
 }

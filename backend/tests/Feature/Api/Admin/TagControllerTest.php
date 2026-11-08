@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
@@ -18,6 +19,18 @@ describe('index', function () {
 
         $response->assertOk();
         expect($response->json('*.name'))->toBe(['docker', 'laravel']);
+    });
+
+    it('counts posts regardless of status', function () {
+        Sanctum::actingAs(User::factory()->create());
+        $tag = Tag::factory()->create(['name' => 'laravel']);
+        $published = Post::factory()->create();
+        $draft = Post::factory()->draft()->create();
+        $tag->posts()->attach([$published->id, $draft->id]);
+
+        $response = $this->getJson('/api/admin/tags');
+
+        $response->assertOk()->assertJsonFragment(['name' => 'laravel', 'count' => 2]);
     });
 });
 

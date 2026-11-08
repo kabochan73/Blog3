@@ -40,7 +40,9 @@ export function TagManager() {
               />
             ) : (
               <>
-                <span>{tag.name}</span>
+                <span>
+                  {tag.name} <span className="text-gray-400">({tag.count})</span>
+                </span>
                 <span className="flex gap-3">
                   <button type="button" onClick={() => setEditingId(tag.id)} className="text-gray-500">
                     編集

@@ -27,8 +27,8 @@ beforeEach(() => {
 describe("TagManager", () => {
   it("renders the tags returned by the API", async () => {
     adminApiFetchMock.mockResolvedValueOnce([
-      { id: 1, name: "laravel" },
-      { id: 2, name: "nextjs" },
+      { id: 1, name: "laravel", count: 0 },
+      { id: 2, name: "nextjs", count: 0 },
     ]);
 
     renderWithClient(<TagManager />);
@@ -40,8 +40,8 @@ describe("TagManager", () => {
   it("creates a tag and refetches the list", async () => {
     adminApiFetchMock
       .mockResolvedValueOnce([]) // initial list
-      .mockResolvedValueOnce({ id: 1, name: "docker" }) // POST
-      .mockResolvedValueOnce([{ id: 1, name: "docker" }]); // refetch after invalidate
+      .mockResolvedValueOnce({ id: 1, name: "docker", count: 0 }) // POST
+      .mockResolvedValueOnce([{ id: 1, name: "docker", count: 0 }]); // refetch after invalidate
 
     const user = userEvent.setup();
     renderWithClient(<TagManager />);
@@ -62,9 +62,9 @@ describe("TagManager", () => {
 
   it("updates a tag name", async () => {
     adminApiFetchMock
-      .mockResolvedValueOnce([{ id: 1, name: "laravel" }]) // initial list
-      .mockResolvedValueOnce({ id: 1, name: "php" }) // PUT
-      .mockResolvedValueOnce([{ id: 1, name: "php" }]); // refetch
+      .mockResolvedValueOnce([{ id: 1, name: "laravel", count: 0 }]) // initial list
+      .mockResolvedValueOnce({ id: 1, name: "php", count: 0 }) // PUT
+      .mockResolvedValueOnce([{ id: 1, name: "php", count: 0 }]); // refetch
 
     const user = userEvent.setup();
     renderWithClient(<TagManager />);
@@ -89,7 +89,7 @@ describe("TagManager", () => {
 
   it("deletes a tag", async () => {
     adminApiFetchMock
-      .mockResolvedValueOnce([{ id: 1, name: "laravel" }]) // initial list
+      .mockResolvedValueOnce([{ id: 1, name: "laravel", count: 0 }]) // initial list
       .mockResolvedValueOnce(undefined) // DELETE
       .mockResolvedValueOnce([]); // refetch
 
