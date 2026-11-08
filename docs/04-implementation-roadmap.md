@@ -42,7 +42,7 @@
 
 **backend**
 - [x] 10. DB: `tags`マイグレーション, `Tag.php`
-- [ ] 11. 管理タグAPI: `Admin/TagController.php`, `StoreTagRequest.php`, `UpdateTagRequest.php`, `TagAdminResource.php`, routes追加 ＋ `tests/Feature/Api/Admin/TagControllerTest.php`
+- [x] 11. 管理タグAPI: `Admin/TagController.php`, `StoreTagRequest.php`, `UpdateTagRequest.php`, `TagAdminResource.php`, routes追加 ＋ `tests/Feature/Api/Admin/TagControllerTest.php`（`count`フィールドは記事との紐付けがまだ無いためステップ14以降で追加）
 
 **frontend**
 - [ ] 12. TanStack Query導入: `QueryClientProvider`設定, `app/admin/layout.tsx`への組み込み（公開ページには影響させないため、ルートlayoutではなくadmin配下のみ）
