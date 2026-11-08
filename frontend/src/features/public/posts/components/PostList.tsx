@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { publicApiFetch } from "@/shared/lib/api";
 import type { PaginatedCollection, PostListItem } from "../types";
+import { Pagination } from "./Pagination";
 import { PostCard } from "./PostCard";
 
 export async function PostList({ page, tag }: { page: number; tag?: string }) {
@@ -25,6 +26,7 @@ export async function PostList({ page, tag }: { page: number; tag?: string }) {
       {posts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}
+      <Pagination currentPage={meta.current_page} lastPage={meta.last_page} tag={tag} />
     </div>
   );
 }
