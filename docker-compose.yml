@@ -49,6 +49,7 @@ services:
       NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
       API_INTERNAL_BASE_URL: http://nginx
       NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      REVALIDATE_SECRET: local-development-secret
 
 volumes:
   postgres_data:
