@@ -35,7 +35,7 @@ describe("PostCard", () => {
     const { container } = render(<PostCard post={basePost} />);
 
     expect(container.querySelector("img")).not.toBeInTheDocument();
-    expect(container.querySelector(".bg-foreground\\/5")).toBeInTheDocument();
+    expect(container.querySelector(".bg-foreground")).toBeInTheDocument();
   });
 
   it("renders the thumbnail image resolved against the API origin", () => {
@@ -45,11 +45,12 @@ describe("PostCard", () => {
     expect(img).toHaveAttribute("src", expect.stringContaining("/storage/images/example.jpg"));
   });
 
-  it("renders all tags, each linking to its tag page", () => {
+  it("renders all tags as plain text, not links", () => {
     render(<PostCard post={{ ...basePost, tags: ["laravel", "nextjs"] }} />);
 
-    expect(screen.getByRole("link", { name: "#laravel" })).toHaveAttribute("href", "/tags/laravel");
-    expect(screen.getByRole("link", { name: "#nextjs" })).toHaveAttribute("href", "/tags/nextjs");
+    expect(screen.getByText("laravel")).toBeInTheDocument();
+    expect(screen.getByText("nextjs")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /laravel|nextjs/ })).not.toBeInTheDocument();
   });
 
   it("renders no tag list when there are no tags", () => {

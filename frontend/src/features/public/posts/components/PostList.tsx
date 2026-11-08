@@ -22,7 +22,7 @@ export async function PostList({ page, tag }: { page: number; tag?: string }) {
   }
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-8">
       {posts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}
