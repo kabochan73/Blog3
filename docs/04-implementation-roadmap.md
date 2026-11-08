@@ -58,7 +58,7 @@
 - [x] 16. 管理記事API（更新・削除）: `Admin/PostController.php`(update/destroy追加), `UpdatePostRequest.php` ＋ 同テストに更新・削除分を追加
 
 **frontend**
-- [ ] 17. 一覧画面: `app/admin/(articles)/posts/page.tsx`, `app/admin/(articles)/drafts/page.tsx`, `features/admin/posts/types.ts`（一覧表示は共通の`PostList.tsx`に切り出し） ＋ `features/admin/posts/__tests__/PostList.test.tsx`
+- [x] 17. 一覧画面: `app/admin/(articles)/posts/page.tsx`, `app/admin/(articles)/drafts/page.tsx`, `features/admin/posts/types.ts`（一覧表示は共通の`PostList.tsx`に切り出し） ＋ `features/admin/posts/__tests__/PostList.test.tsx`
 - [ ] 18. タグ選択UI: `features/admin/tags/components/TagPicker.tsx`（`useTagsList.ts`を切り出し、`useTagsAdmin.ts`と共用。`features/admin/posts`からimportして使う） ＋ `features/admin/tags/__tests__/TagPicker.test.tsx`
 - [ ] 19. 記事フォーム＋新規作成: `features/admin/posts/components/PostForm.tsx`＋`PostForm.schema.ts`, `app/admin/(articles)/posts/new/page.tsx`（`useCreatePost.ts`で作成ロジックを分離） ＋ `features/admin/posts/__tests__/PostForm.test.tsx`, `PostForm.schema.test.ts`
 - [ ] 20. 編集・削除: `app/admin/(articles)/posts/[slug]/edit/page.tsx`, `features/admin/posts/hooks/usePostEditor.ts` ＋ `features/admin/posts/__tests__/usePostEditor.test.ts`
