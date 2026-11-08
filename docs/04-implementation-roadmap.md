@@ -78,7 +78,7 @@
 - [x] 24. 公開タグAPI: `Api/TagController.php`(index), `TagResource.php`, routes追加 ＋ `tests/Feature/Api/TagControllerTest.php`
 
 **frontend**
-- [ ] 25. 共通レイアウト＋フォント: `app/layout.tsx`（Playfair Display・Noto Serif JP・Noto Sans JPの`next/font/google`読み込み）, `globals.css`, `app/(public)/layout.tsx`
+- [x] 25. 共通レイアウト＋フォント: `app/layout.tsx`（Playfair Display・Noto Serif JP・Noto Sans JPの`next/font/google`読み込み）, `globals.css`, `app/(public)/layout.tsx`（About Meは仮テキスト、Tagsはステップ30で統合）
 - [ ] 26. 記事一覧1ページ目: `app/(public)/layout.tsx`, `app/(public)/page.tsx`, `features/public/posts/components/PostCard.tsx`（サムネイル・抜粋・全タグ表示）, `features/public/posts/types.ts` ＋ `features/public/posts/__tests__/PostCard.test.tsx`
 - [ ] 27. ページ送り: `app/(public)/page/[n]/page.tsx`, `features/public/posts/components/Pagination.tsx`, `shared/lib/pagination.ts` ＋ `features/public/posts/__tests__/Pagination.test.tsx`
 - [ ] 28. 記事詳細: `app/(public)/posts/[slug]/page.tsx`, `features/public/posts/components/MarkdownRenderer.tsx` ＋ `features/public/posts/__tests__/MarkdownRenderer.test.tsx`
