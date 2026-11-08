@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { TagList } from "@/features/public/tags/components/TagList";
+
 export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
     <div className="mx-auto max-w-5xl px-6 py-12">
@@ -22,7 +24,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
           </section>
           <section>
             <h2 className="font-heading mb-3 text-xl font-semibold">Tags</h2>
-            {/* TagList はステップ30で統合 */}
+            <TagList />
           </section>
         </aside>
       </div>

@@ -83,7 +83,7 @@
 - [x] 27. ページ送り: `app/(public)/page/[n]/page.tsx`, `features/public/posts/components/Pagination.tsx`, `shared/lib/pagination.ts` ＋ `features/public/posts/__tests__/Pagination.test.tsx`
 - [x] 28. 記事詳細: `app/(public)/posts/[slug]/page.tsx`, `features/public/posts/components/MarkdownRenderer.tsx` ＋ `features/public/posts/__tests__/MarkdownRenderer.test.tsx`
 - [x] 29. 目次(TOC): `features/public/posts/components/TableOfContents.tsx`, 詳細ページへの統合 ＋ `features/public/posts/__tests__/TableOfContents.test.tsx`（`markdown.ts`の`extractHeadings`とそのテストも追加）
-- [ ] 30. タグ別一覧: `app/(public)/tags/[tag]/page.tsx`, `app/(public)/tags/[tag]/page/[n]/page.tsx`, `features/public/tags/components/TagList.tsx`（prefetch付き）, `features/public/tags/types.ts` ＋ `features/public/tags/__tests__/TagList.test.tsx`
+- [x] 30. タグ別一覧: `app/(public)/tags/[tag]/page.tsx`, `app/(public)/tags/[tag]/page/[n]/page.tsx`, `features/public/tags/components/TagList.tsx`（prefetch付き）, `features/public/tags/types.ts` ＋ `features/public/tags/__tests__/TagList.test.tsx`（design-reference.pngに合わせて縦並びリスト・count非表示。`cacheLife()`テストは`next/cache`をモック）
 
 ## フェーズ7: 仕上げ
 
