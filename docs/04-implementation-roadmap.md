@@ -82,7 +82,7 @@
 - [x] 26. 記事一覧1ページ目: `app/(public)/layout.tsx`, `app/(public)/page.tsx`, `features/public/posts/components/PostCard.tsx`（サムネイル・抜粋・全タグ表示）, `features/public/posts/types.ts` ＋ `features/public/posts/__tests__/PostCard.test.tsx`（`PostList.tsx`でデータ取得、Paginationはステップ27で統合。`'use cache'`+`cacheLife("max")`のため動作確認時はキャッシュクリアが必要）
 - [x] 27. ページ送り: `app/(public)/page/[n]/page.tsx`, `features/public/posts/components/Pagination.tsx`, `shared/lib/pagination.ts` ＋ `features/public/posts/__tests__/Pagination.test.tsx`
 - [x] 28. 記事詳細: `app/(public)/posts/[slug]/page.tsx`, `features/public/posts/components/MarkdownRenderer.tsx` ＋ `features/public/posts/__tests__/MarkdownRenderer.test.tsx`
-- [ ] 29. 目次(TOC): `features/public/posts/components/TableOfContents.tsx`, 詳細ページへの統合 ＋ `features/public/posts/__tests__/TableOfContents.test.tsx`
+- [x] 29. 目次(TOC): `features/public/posts/components/TableOfContents.tsx`, 詳細ページへの統合 ＋ `features/public/posts/__tests__/TableOfContents.test.tsx`（`markdown.ts`の`extractHeadings`とそのテストも追加）
 - [ ] 30. タグ別一覧: `app/(public)/tags/[tag]/page.tsx`, `app/(public)/tags/[tag]/page/[n]/page.tsx`, `features/public/tags/components/TagList.tsx`（prefetch付き）, `features/public/tags/types.ts` ＋ `features/public/tags/__tests__/TagList.test.tsx`
 
 ## フェーズ7: 仕上げ

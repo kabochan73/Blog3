@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { MarkdownRenderer } from "@/features/public/posts/components/MarkdownRenderer";
+import { TableOfContents } from "@/features/public/posts/components/TableOfContents";
+import { extractHeadings } from "@/features/public/posts/markdown";
 import type { PaginatedCollection, PostDetail, PostListItem } from "@/features/public/posts/types";
 import { ApiError, publicApiFetch, resolveImageUrl } from "@/shared/lib/api";
 
@@ -75,6 +77,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           )}
         </div>
       </div>
+      <TableOfContents headings={extractHeadings(post.content)} />
       <MarkdownRenderer content={post.content} />
     </article>
   );
