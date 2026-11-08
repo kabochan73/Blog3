@@ -17,6 +17,7 @@ frontend（Next.js）のみVercelにデプロイする。backend・PostgreSQL・
 | 変数名 | 用途 |
 |---|---|
 | `NEXT_PUBLIC_API_BASE_URL` | Laravel公開APIのベースURL（RailwayのbackendサービスURL） |
+| `NEXT_PUBLIC_SITE_URL` | このサイト自身の公開URL（Vercelの公開ドメイン）。サイトマップ生成に使用 |
 | `REVALIDATE_SECRET` | オンデマンド再検証Webhookの認証シークレット。Railway側の値と一致させる |
 
 ## backendとの通信

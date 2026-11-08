@@ -4,6 +4,8 @@ import { PostList } from "@/features/public/posts/components/PostList";
 import type { PaginatedCollection, PostListItem } from "@/features/public/posts/types";
 import { publicApiFetch } from "@/shared/lib/api";
 
+export const instant = false;
+
 export async function generateStaticParams() {
   const { meta } = await publicApiFetch<PaginatedCollection<PostListItem>>("/api/posts");
 

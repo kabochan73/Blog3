@@ -9,6 +9,8 @@ import { extractHeadings } from "@/features/public/posts/markdown";
 import type { PaginatedCollection, PostDetail, PostListItem } from "@/features/public/posts/types";
 import { ApiError, publicApiFetch, resolveImageUrl } from "@/shared/lib/api";
 
+export const instant = false;
+
 export async function generateStaticParams() {
   const { data: posts } = await publicApiFetch<PaginatedCollection<PostListItem>>("/api/posts?per_page=9999");
 

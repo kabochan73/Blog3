@@ -5,6 +5,8 @@ import type { PaginatedCollection, PostListItem } from "@/features/public/posts/
 import type { PublicTag } from "@/features/public/tags/types";
 import { publicApiFetch } from "@/shared/lib/api";
 
+export const instant = false;
+
 export async function generateStaticParams() {
   const tags = await publicApiFetch<PublicTag[]>("/api/tags");
 
