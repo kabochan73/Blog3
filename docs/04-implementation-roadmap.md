@@ -74,7 +74,7 @@
 ## フェーズ6: 公開ページ
 
 **backend**
-- [ ] 23. 公開記事API: `Api/PostController.php`(index/show), `PostResource.php`, routes追加 ＋ `tests/Feature/Api/PostControllerTest.php`
+- [x] 23. 公開記事API: `Api/PostController.php`(index/show), `PostResource.php`, routes追加 ＋ `tests/Feature/Api/PostControllerTest.php`（ルート名衝突を避けるため管理用ルート名を`admin.posts.*`/`admin.tags.*`に変更）
 - [ ] 24. 公開タグAPI: `Api/TagController.php`(index), `TagResource.php`, routes追加 ＋ `tests/Feature/Api/TagControllerTest.php`
 
 **frontend**
