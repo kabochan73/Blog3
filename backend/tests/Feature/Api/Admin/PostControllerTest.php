@@ -140,3 +140,73 @@ describe('store', function () {
             ->assertJsonValidationErrors(['tags.0']);
     });
 });
+
+describe('update', function () {
+    it('returns 401 when unauthenticated', function () {
+        $post = Post::factory()->create();
+
+        $this->putJson("/api/admin/posts/{$post->slug}", validPostPayload())->assertStatus(401);
+    });
+
+    it('replaces the post fields and tags', function () {
+        Sanctum::actingAs(User::factory()->create());
+        $post = Post::factory()->draft()->create(['slug' => 'old-slug']);
+        $tag = Tag::factory()->create(['name' => 'laravel']);
+
+        $response = $this->putJson("/api/admin/posts/{$post->slug}", validPostPayload([
+            'slug' => 'new-slug',
+            'title' => '更新後タイトル',
+            'tags' => ['laravel'],
+        ]));
+
+        $response->assertOk()->assertJsonFragment(['slug' => 'new-slug', 'title' => '更新後タイトル']);
+        $post->refresh();
+        expect($post->slug)->toBe('new-slug');
+        expect($post->tags()->pluck('name')->all())->toBe([$tag->name]);
+    });
+
+    it('allows keeping the same slug', function () {
+        Sanctum::actingAs(User::factory()->create());
+        $post = Post::factory()->create(['slug' => 'example-post']);
+
+        $this->putJson("/api/admin/posts/{$post->slug}", validPostPayload())->assertOk();
+    });
+
+    it('returns 422 when the new slug is already used by another post', function () {
+        Sanctum::actingAs(User::factory()->create());
+        Post::factory()->create(['slug' => 'taken-slug']);
+        $post = Post::factory()->create(['slug' => 'example-post']);
+
+        $this->putJson("/api/admin/posts/{$post->slug}", validPostPayload(['slug' => 'taken-slug']))
+            ->assertStatus(422)
+            ->assertJsonValidationErrors(['slug']);
+    });
+
+    it('returns 404 for an unknown slug', function () {
+        Sanctum::actingAs(User::factory()->create());
+
+        $this->putJson('/api/admin/posts/unknown-slug', validPostPayload())->assertStatus(404);
+    });
+});
+
+describe('destroy', function () {
+    it('returns 401 when unauthenticated', function () {
+        $post = Post::factory()->create();
+
+        $this->deleteJson("/api/admin/posts/{$post->slug}")->assertStatus(401);
+    });
+
+    it('deletes the post', function () {
+        Sanctum::actingAs(User::factory()->create());
+        $post = Post::factory()->create();
+
+        $this->deleteJson("/api/admin/posts/{$post->slug}")->assertNoContent();
+        expect(Post::find($post->id))->toBeNull();
+    });
+
+    it('returns 404 for an unknown slug', function () {
+        Sanctum::actingAs(User::factory()->create());
+
+        $this->deleteJson('/api/admin/posts/unknown-slug')->assertStatus(404);
+    });
+});

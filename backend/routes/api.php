@@ -9,6 +9,6 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
-    Route::apiResource('tags', AdminTagController::class)->only(['index', 'store', 'update', 'destroy']);
-    Route::apiResource('posts', AdminPostController::class)->only(['index', 'show', 'store']);
+    Route::apiResource('tags', AdminTagController::class)->except(['show']);
+    Route::apiResource('posts', AdminPostController::class);
 });

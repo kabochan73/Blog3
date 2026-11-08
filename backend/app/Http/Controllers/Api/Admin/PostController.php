@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostAdminResource;
 use App\Models\Post;
 use App\Models\Tag;
@@ -46,5 +47,24 @@ class PostController extends Controller
         }
 
         return (new PostAdminResource($post->load('tags')))->response()->setStatusCode(201);
+    }
+
+    public function update(UpdatePostRequest $request, Post $post)
+    {
+        $data = $request->validated();
+        $tagNames = $data['tags'] ?? [];
+        unset($data['tags']);
+
+        $post->update($data);
+        $post->tags()->sync(Tag::whereIn('name', $tagNames)->pluck('id'));
+
+        return new PostAdminResource($post->load('tags'));
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return response()->noContent();
     }
 }
