@@ -1,5 +1,9 @@
 export type PostStatus = "draft" | "published";
 
+export type ImageUploadResponse = {
+  url: string;
+};
+
 export type Post = {
   id: number;
   title: string;

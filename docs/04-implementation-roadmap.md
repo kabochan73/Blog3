@@ -69,7 +69,7 @@
 - [x] 21. 画像アップロードAPI: `Admin/ImageController.php`, `UploadImageRequest.php`, `ImageUploadService.php`（intervention/image、最大幅1600px・品質80）, routes追加 ＋ `tests/Feature/Api/Admin/ImageControllerTest.php`, `tests/Unit/Services/ImageUploadServiceTest.php`
 
 **frontend**
-- [ ] 22. 画像アップロードUI: `features/admin/posts/components/ImageUploader.tsx`, `PostForm.tsx`への統合（サムネイル・本文挿入の両方） ＋ `features/admin/posts/__tests__/ImageUploader.test.tsx`
+- [x] 22. 画像アップロードUI: `features/admin/posts/components/ImageUploader.tsx`, `PostForm.tsx`への統合（サムネイル・本文挿入の両方） ＋ `features/admin/posts/__tests__/ImageUploader.test.tsx`
 
 ## フェーズ6: 公開ページ
 
