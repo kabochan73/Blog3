@@ -28,9 +28,9 @@
 ## フェーズ2: 認証
 
 **backend**
-- [ ] 4. DB＋User: `personal_access_tokens`マイグレーション, `User.php`（HasApiTokens）, `config/sanctum.php`
-- [ ] 5. 管理者seed: `AdminUserSeeder.php`, `DatabaseSeeder.php`, `.env.example`更新
-- [ ] 6. ログインAPI: `Api/AuthController.php`, `LoginRequest.php`, `routes/api.php`追加, `config/cors.php` ＋ `tests/Feature/Api/AuthControllerTest.php`
+- [x] 4. DB＋User: `personal_access_tokens`マイグレーション, `User.php`（HasApiTokens）, `config/sanctum.php`
+- [x] 5. 管理者seed: `AdminUserSeeder.php`, `DatabaseSeeder.php`, `.env.example`更新
+- [x] 6. ログインAPI: `Api/AuthController.php`, `LoginRequest.php`, `routes/api.php`追加, `config/cors.php` ＋ `tests/Feature/Api/AuthControllerTest.php`
 
 **frontend**
 - [ ] 7. APIクライアント基盤: `shared/lib/api.ts`, `shared/lib/types.ts`, `.env.local.example`
