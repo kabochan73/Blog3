@@ -40,6 +40,7 @@ describe('store', function () {
     });
 
     it('creates a tag', function () {
+        fakeRevalidationWebhook();
         Sanctum::actingAs(User::factory()->create());
 
         $response = $this->postJson('/api/admin/tags', ['name' => 'laravel']);
@@ -72,6 +73,7 @@ describe('update', function () {
     });
 
     it('updates the tag name', function () {
+        fakeRevalidationWebhook();
         Sanctum::actingAs(User::factory()->create());
         $tag = Tag::factory()->create(['name' => 'laravel']);
 
@@ -82,6 +84,7 @@ describe('update', function () {
     });
 
     it('allows keeping the same name', function () {
+        fakeRevalidationWebhook();
         Sanctum::actingAs(User::factory()->create());
         $tag = Tag::factory()->create(['name' => 'laravel']);
 
@@ -107,6 +110,7 @@ describe('destroy', function () {
     });
 
     it('deletes the tag', function () {
+        fakeRevalidationWebhook();
         Sanctum::actingAs(User::factory()->create());
         $tag = Tag::factory()->create();
 

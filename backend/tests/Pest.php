@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 /*
@@ -44,7 +45,9 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function fakeRevalidationWebhook(): void
 {
-    // ..
+    Http::fake([
+        config('services.revalidate.url') => Http::response(['revalidated' => true]),
+    ]);
 }

@@ -87,6 +87,7 @@ describe('store', function () {
     });
 
     it('creates a post with tags', function () {
+        fakeRevalidationWebhook();
         Sanctum::actingAs(User::factory()->create());
         Tag::factory()->create(['name' => 'laravel']);
         Tag::factory()->create(['name' => 'nextjs']);
@@ -99,6 +100,7 @@ describe('store', function () {
     });
 
     it('creates a post without tags', function () {
+        fakeRevalidationWebhook();
         Sanctum::actingAs(User::factory()->create());
 
         $response = $this->postJson('/api/admin/posts', validPostPayload());
@@ -149,6 +151,7 @@ describe('update', function () {
     });
 
     it('replaces the post fields and tags', function () {
+        fakeRevalidationWebhook();
         Sanctum::actingAs(User::factory()->create());
         $post = Post::factory()->draft()->create(['slug' => 'old-slug']);
         $tag = Tag::factory()->create(['name' => 'laravel']);
@@ -166,6 +169,7 @@ describe('update', function () {
     });
 
     it('allows keeping the same slug', function () {
+        fakeRevalidationWebhook();
         Sanctum::actingAs(User::factory()->create());
         $post = Post::factory()->create(['slug' => 'example-post']);
 
@@ -197,6 +201,7 @@ describe('destroy', function () {
     });
 
     it('deletes the post', function () {
+        fakeRevalidationWebhook();
         Sanctum::actingAs(User::factory()->create());
         $post = Post::factory()->create();
 

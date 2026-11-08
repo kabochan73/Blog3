@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'revalidate' => [
+        'url' => env('FRONTEND_URL').'/api/revalidate',
+        'secret' => env('REVALIDATE_SECRET'),
+    ],
+
 ];

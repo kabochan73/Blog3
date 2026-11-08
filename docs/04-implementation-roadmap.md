@@ -89,4 +89,4 @@
 
 - [x] 31. サイトマップ: `app/(public)/sitemap.ts`
 - [x] 32. 再検証Webhook（Next.js側）: `app/api/revalidate/route.ts`
-- [ ] 33. 再検証Webhook呼び出し（Laravel側）: `RevalidationService.php`, `Admin/PostController.php`・`Admin/TagController.php`への組み込み ＋ `tests/Unit/Services/RevalidationServiceTest.php`
+- [x] 33. 再検証Webhook呼び出し（Laravel側）: `RevalidationService.php`, `Admin/PostController.php`・`Admin/TagController.php`への組み込み ＋ `tests/Unit/Services/RevalidationServiceTest.php`
