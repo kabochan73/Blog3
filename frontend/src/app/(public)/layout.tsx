@@ -5,7 +5,7 @@ import { TagList } from "@/features/public/tags/components/TagList";
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-12">
+    <div className="mx-auto w-full max-w-5xl px-6 py-12">
       <header className="mb-10 border-b border-foreground/10 pb-6">
         <Link href="/">
           <h1 className="font-heading text-4xl font-bold">Blog</h1>
