@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\ImageController as AdminImageController;
 use App\Http\Controllers\Api\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Api\Admin\TagController as AdminTagController;
 use App\Http\Controllers\Api\AuthController;
@@ -11,4 +12,5 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::apiResource('tags', AdminTagController::class)->except(['show']);
     Route::apiResource('posts', AdminPostController::class);
+    Route::post('images', [AdminImageController::class, 'store']);
 });
