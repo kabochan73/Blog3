@@ -48,7 +48,7 @@
 
 **frontend**
 - [x] 12. TanStack Query導入: `QueryClientProvider`設定, `app/admin/layout.tsx`への組み込み（公開ページには影響させないため、ルートlayoutではなくadmin配下のみ）
-- [ ] 13. タグ管理画面: `app/admin/tags/page.tsx`＋`features/admin/tags/components/`, `features/admin/tags/hooks/useTagsAdmin.ts`＋`TagForm.schema.ts` ＋ `features/admin/tags/__tests__/`
+- [x] 13. タグ管理画面: `app/admin/tags/page.tsx`＋`features/admin/tags/components/`, `features/admin/tags/hooks/useTagsAdmin.ts`＋`TagForm.schema.ts` ＋ `features/admin/tags/__tests__/`
 
 ## フェーズ4: 記事CRUD
 
