@@ -5,29 +5,32 @@ import { TagList } from "@/features/public/tags/components/TagList";
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto w-full max-w-5xl px-6 py-12">
-      <header className="mb-10 border-b border-foreground/10 pb-6">
-        <Link href="/">
-          <h1 className="font-heading text-4xl font-bold">Blog</h1>
-        </Link>
+    <>
+      <header className="border-b border-foreground">
+        <div className="mx-auto w-full max-w-6xl px-4 py-4">
+          <Link href="/" className="inline-block transition-opacity hover:opacity-60">
+            <h1 className="font-heading text-4xl font-bold">My Blog</h1>
+          </Link>
+        </div>
       </header>
-      <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_280px]">
-        <main>{children}</main>
-        <aside className="space-y-10">
-          <section>
-            <h2 className="font-heading mb-3 text-xl font-semibold">About Me</h2>
-            {/* TODO: 実際のプロフィールに差し替える */}
-            <p className="font-heading text-base font-medium">名前 / 年齢</p>
-            <p className="mt-2 text-sm leading-relaxed text-foreground/70">
-              自己紹介文をここに記載します。
-            </p>
-          </section>
-          <section>
-            <h2 className="font-heading mb-3 text-xl font-semibold">Tags</h2>
-            <TagList />
-          </section>
-        </aside>
+      <div className="mx-auto w-full max-w-6xl px-6 py-12">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_280px]">
+          <main>{children}</main>
+          <aside className="space-y-8 md:border-l md:border-foreground md:pl-12">
+            <section>
+              <h2 className="font-heading mb-3 text-3xl font-bold border-b border-foreground pb-4">About Me</h2>
+              <p className="font-heading font-medium text-2xl">Takumi.K / 2001</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/80">
+                LaravelとNEXT.jsを中心に勉強をしています。AWSも勉強中です。<br />
+              </p>
+            </section>
+            <section>
+              <h2 className="font-heading mb-3 text-3xl font-bold border-b border-foreground pb-4">Tags</h2>
+              <TagList />
+            </section>
+          </aside>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
