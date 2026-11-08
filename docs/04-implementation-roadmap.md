@@ -75,7 +75,7 @@
 
 **backend**
 - [x] 23. 公開記事API: `Api/PostController.php`(index/show), `PostResource.php`, routes追加 ＋ `tests/Feature/Api/PostControllerTest.php`（ルート名衝突を避けるため管理用ルート名を`admin.posts.*`/`admin.tags.*`に変更）
-- [ ] 24. 公開タグAPI: `Api/TagController.php`(index), `TagResource.php`, routes追加 ＋ `tests/Feature/Api/TagControllerTest.php`
+- [x] 24. 公開タグAPI: `Api/TagController.php`(index), `TagResource.php`, routes追加 ＋ `tests/Feature/Api/TagControllerTest.php`
 
 **frontend**
 - [ ] 25. 共通レイアウト＋フォント: `app/layout.tsx`（Playfair Display・Noto Serif JP・Noto Sans JPの`next/font/google`読み込み）, `globals.css`, `app/(public)/layout.tsx`
