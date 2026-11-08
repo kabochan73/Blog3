@@ -54,7 +54,7 @@
 
 **backend**
 - [x] 14. DB: `posts`/`post_tag`マイグレーション, `Post.php`（リレーション）, `Tag.php`更新
-- [ ] 15. 管理記事API（読み取り・作成）: `Admin/PostController.php`(index/show/store), `StorePostRequest.php`, `PostAdminResource.php`, routes追加 ＋ `tests/Feature/Api/Admin/PostControllerTest.php`（読み取り・作成分）
+- [x] 15. 管理記事API（読み取り・作成）: `Admin/PostController.php`(index/show/store), `StorePostRequest.php`, `PostAdminResource.php`, routes追加 ＋ `tests/Feature/Api/Admin/PostControllerTest.php`（読み取り・作成分）
 - [ ] 16. 管理記事API（更新・削除）: `Admin/PostController.php`(update/destroy追加), `UpdatePostRequest.php` ＋ 同テストに更新・削除分を追加
 
 **frontend**
