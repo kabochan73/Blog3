@@ -33,9 +33,9 @@
 - [x] 6. ログインAPI: `Api/AuthController.php`, `LoginRequest.php`, `routes/api.php`追加, `config/cors.php` ＋ `tests/Feature/Api/AuthControllerTest.php`
 
 **frontend**
-- [ ] 7. APIクライアント基盤: `shared/lib/api.ts`, `shared/lib/types.ts`, `.env.local.example`
-- [ ] 8. ログイン画面: `shared/lib/auth.ts`, `features/admin/auth/components/LoginForm.tsx`＋`LoginForm.schema.ts`, `app/login/page.tsx` ＋ `features/admin/auth/__tests__/LoginForm.test.tsx`
-- [ ] 9. 管理画面ガード: `app/admin/layout.tsx`, `features/admin/auth/components/AdminShell.tsx`, `features/admin/auth/components/AdminHeader.tsx`
+- [x] 7. APIクライアント基盤: `shared/lib/api.ts`, `.env.local.example`（ドメイン型は各featureに持たせる方針のため、共有の`types.ts`は作らない）
+- [x] 8. ログイン画面: `shared/lib/auth.ts`, `features/admin/auth/types.ts`, `features/admin/auth/components/LoginForm.tsx`＋`LoginForm.schema.ts`, `app/login/page.tsx` ＋ `features/admin/auth/__tests__/LoginForm.test.tsx`
+- [x] 9. 管理画面ガード: `app/admin/layout.tsx`, `features/admin/auth/components/AdminShell.tsx`, `features/admin/auth/components/AdminHeader.tsx` ＋ `features/admin/auth/__tests__/AdminShell.test.tsx`
 
 ## フェーズ3: タグ管理
 
