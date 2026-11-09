@@ -10,6 +10,19 @@ frontendはVercelへ移行した（[docs/infra/vercel.md](./vercel.md)参照）�
 | **postgres** | RailwayのマネージドPostgreSQL | `posts` / `tags` / `post_tag` / `users` / `personal_access_tokens`（[docs/backend/database-schema.md](../backend/database-schema.md)） |
 | **bucket** | Railwayのオブジェクトストレージ（S3互換） | アップロードした画像のみを保存 |
 
+## backendのDockerイメージ
+
+ローカルの`backend/Dockerfile`はphp-fpmのみを起動し、別コンテナのnginxにFastCGIで接続する構成（docker-compose.yml参照）。Railwayの`backend`サービスはHTTPを直接受け付ける単一コンテナである必要があるため、本番用に`backend/docker/production/Dockerfile`を別途用意し、1コンテナ内でnginx・php-fpmをsupervisordで同時起動する。
+
+- `backend/docker/production/Dockerfile`: nginx・supervisor・gettextを追加インストールしたイメージ
+- `backend/docker/production/nginx.conf.template`: `fastcgi_pass`をローカル(`127.0.0.1:9000`)向けにした設定。`listen ${PORT}`はRailwayが注入する`PORT`環境変数をコンテナ起動時に`envsubst`で埋め込む
+- `backend/docker/production/supervisord.conf`: nginx・php-fpmを両方管理
+- `backend/docker/production/entrypoint.sh`: `envsubst`でnginx設定を生成 → `php artisan migrate --force` → `supervisord`起動
+
+Alpineのnginxパッケージは`/etc/nginx/conf.d/`をhttpブロックの外側でincludeするため、仮想ホスト設定は`/etc/nginx/http.d/`に置く必要がある（Debian系nginxパッケージとは配置が異なる点に注意）。
+
+Railwayのビルド設定で、backendサービスのDockerfileパスを`backend/docker/production/Dockerfile`、ビルドコンテキストを`backend`に設定する。
+
 ## 画像だけbucketに出す理由
 
 - 画像はbucketの公開URLから直接配信できるため、backendのNginxを経由せず済み、負荷が減る
