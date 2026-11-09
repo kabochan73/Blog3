@@ -35,7 +35,7 @@ describe("LoginForm", () => {
     const user = userEvent.setup();
     render(<LoginForm />);
 
-    await user.click(screen.getByRole("button", { name: "ログイン" }));
+    await user.click(screen.getByRole("button", { name: "Login" }));
 
     expect(await screen.findByText("メールアドレスを入力してください")).toBeInTheDocument();
     expect(screen.getByText("パスワードを入力してください")).toBeInTheDocument();
@@ -47,9 +47,9 @@ describe("LoginForm", () => {
     const user = userEvent.setup();
     render(<LoginForm />);
 
-    await user.type(screen.getByLabelText("メールアドレス"), "admin@example.com");
-    await user.type(screen.getByLabelText("パスワード"), "password");
-    await user.click(screen.getByRole("button", { name: "ログイン" }));
+    await user.type(screen.getByLabelText("Mail Address"), "admin@example.com");
+    await user.type(screen.getByLabelText("Password"), "password");
+    await user.click(screen.getByRole("button", { name: "Login" }));
 
     await waitFor(() => expect(setTokenMock).toHaveBeenCalledWith("test-token"));
     expect(pushMock).toHaveBeenCalledWith("/admin/posts");
@@ -60,9 +60,9 @@ describe("LoginForm", () => {
     const user = userEvent.setup();
     render(<LoginForm />);
 
-    await user.type(screen.getByLabelText("メールアドレス"), "admin@example.com");
-    await user.type(screen.getByLabelText("パスワード"), "wrong-password");
-    await user.click(screen.getByRole("button", { name: "ログイン" }));
+    await user.type(screen.getByLabelText("Mail Address"), "admin@example.com");
+    await user.type(screen.getByLabelText("Password"), "wrong-password");
+    await user.click(screen.getByRole("button", { name: "Login" }));
 
     expect(await screen.findByRole("alert")).toHaveTextContent("メールアドレスまたはパスワードが正しくありません");
     expect(setTokenMock).not.toHaveBeenCalled();

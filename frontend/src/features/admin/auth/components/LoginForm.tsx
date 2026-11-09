@@ -41,34 +41,34 @@ export function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-sm space-y-4 rounded-lg border border-gray-200 p-6"
+      className="w-full max-w-sm space-y-6 border border-foreground p-8"
     >
-      <h1 className="text-lg font-semibold">ログイン</h1>
+      <h1 className="font-heading text-3xl font-bold tracking-tight">Login</h1>
 
       <div className="space-y-1">
-        <label htmlFor="email" className="block text-sm">
-          メールアドレス
+        <label htmlFor="email" className="font-heading block text-sm font-medium text-foreground/80">
+          Mail Address
         </label>
         <input
           id="email"
           type="text"
           autoComplete="username"
           {...register("email")}
-          className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+          className="w-full border border-foreground/40 bg-transparent px-3 py-2 text-sm focus:border-foreground focus:outline-none"
         />
         {errors.email && <p className="text-xs text-red-600">{errors.email.message}</p>}
       </div>
 
       <div className="space-y-1">
-        <label htmlFor="password" className="block text-sm">
-          パスワード
+        <label htmlFor="password" className="font-heading block text-sm font-medium text-foreground/80">
+          Password
         </label>
         <input
           id="password"
           type="password"
           autoComplete="current-password"
           {...register("password")}
-          className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+          className="w-full border border-foreground/40 bg-transparent px-3 py-2 text-sm focus:border-foreground focus:outline-none"
         />
         {errors.password && <p className="text-xs text-red-600">{errors.password.message}</p>}
       </div>
@@ -82,9 +82,9 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded bg-gray-900 px-3 py-2 text-sm text-white disabled:opacity-50"
+        className="w-full bg-foreground px-3 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-60 disabled:opacity-50"
       >
-        {isSubmitting ? "ログイン中..." : "ログイン"}
+        {isSubmitting ? "Login..." : "Login"}
       </button>
     </form>
   );
