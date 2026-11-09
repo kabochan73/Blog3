@@ -13,7 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Railway terminates TLS at its edge proxy and forwards plain HTTP, so
+        // without this Laravel sees every request as http:// and generates
+        // http:// URLs (route(), url(), etc.), causing an https->http redirect loop.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
