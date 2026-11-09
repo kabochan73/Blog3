@@ -21,7 +21,11 @@ class ImageUploadService
      * Uses the app's default filesystem disk (FILESYSTEM_DISK), so this resolves to the
      * local "public" disk in development and the S3-compatible bucket in production.
      *
-     * @return string The public URL, e.g. "/storage/images/xxx.jpg" locally or a bucket URL in production.
+     * Railway's S3-compatible buckets don't support public objects, so for any disk other
+     * than "public" the URL points at ServeImageController, which proxies the file through
+     * the app instead of a direct bucket URL.
+     *
+     * @return string The public URL, e.g. "/storage/images/xxx.jpg" locally or a proxied URL in production.
      */
     public function store(UploadedFile $file): string
     {
@@ -32,9 +36,11 @@ class ImageUploadService
         $encoded = $image->encodeUsingFormat($format, quality: self::QUALITY);
 
         $filename = Str::uuid().'.'.$format->fileExtension()->value;
-        $disk = Storage::disk(config('filesystems.default'));
-        $disk->put("images/{$filename}", $encoded->toString());
+        $diskName = config('filesystems.default');
+        Storage::disk($diskName)->put("images/{$filename}", $encoded->toString());
 
-        return $disk->url("images/{$filename}");
+        return $diskName === 'public'
+            ? Storage::disk($diskName)->url("images/{$filename}")
+            : route('images.show', ['filename' => $filename]);
     }
 }

@@ -61,3 +61,19 @@ it('gives each upload a unique, non-predictable filename', function () {
 
     expect($first)->not->toBe($second);
 });
+
+describe('when the default disk is not "public" (e.g. production S3)', function () {
+    beforeEach(function () {
+        config(['filesystems.default' => 's3']);
+        Storage::fake('s3');
+    });
+
+    it('stores the file on that disk and returns a proxied URL instead of a direct bucket URL', function () {
+        $file = UploadedFile::fake()->image('photo.jpg', 100, 100);
+
+        $url = (new ImageUploadService)->store($file);
+
+        expect($url)->toContain('/storage/images/')->toEndWith('.jpg');
+        Storage::disk('s3')->assertExists('images/'.basename($url));
+    });
+});
