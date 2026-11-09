@@ -22,7 +22,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen">
         <AdminHeader />
-        <main className="p-6">{children}</main>
+        <main>{children}</main>
       </div>
     </QueryClientProvider>
   );

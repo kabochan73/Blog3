@@ -5,7 +5,7 @@ import { AdminTagList } from "@/features/admin/tags/components/AdminTagList";
 
 export default function AdminWithSidebarLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto w-full max-w-6xl">
+    <div className="mx-auto w-full max-w-6xl px-6 py-12">
       <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_280px]">
         <main>{children}</main>
         <aside className="space-y-8 md:border-l md:border-foreground md:pl-12">
