@@ -1,5 +1,7 @@
 import { PostList } from "@/features/admin/posts/components/PostList";
 
+export const instant = false;
+
 export default async function AdminDraftsPage({ searchParams }: { searchParams: Promise<{ tag?: string }> }) {
   const { tag } = await searchParams;
 
