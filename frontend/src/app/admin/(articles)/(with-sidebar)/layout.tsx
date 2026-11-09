@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { TagList } from "@/features/public/tags/components/TagList";
@@ -9,12 +10,27 @@ export default function AdminWithSidebarLayout({ children }: { children: ReactNo
         <main>{children}</main>
         <aside className="space-y-8 md:border-l md:border-foreground md:pl-12">
           <section>
-            <h2 className="font-heading mb-3 text-3xl font-bold border-b border-foreground pb-4">About Me</h2>
-            <p className="font-heading font-medium text-2xl">Takumi.K / 2001</p>
-            <p className="mt-2 text-sm leading-relaxed text-foreground/80">
-              LaravelとNEXT.jsを中心に勉強をしています。AWSも勉強中です。
-              <br />
-            </p>
+            <h2 className="font-heading mb-3 text-3xl font-bold border-b border-foreground pb-4">Actions</h2>
+            <nav className="flex flex-col gap-1 text-base font-semibold">
+              <Link
+                href="/admin/posts/new"
+                className="border-b border-foreground/40 py-1 text-foreground hover:text-foreground/60"
+              >
+                新規記事作成
+              </Link>
+              <Link
+                href="/admin/drafts"
+                className="border-b border-foreground/40 py-1 text-foreground hover:text-foreground/60"
+              >
+                下書き一覧
+              </Link>
+              <Link
+                href="/admin/tags"
+                className="border-b border-foreground/40 py-1 text-foreground hover:text-foreground/60"
+              >
+                タグ管理
+              </Link>
+            </nav>
           </section>
           <section>
             <h2 className="font-heading mb-3 text-3xl font-bold border-b border-foreground pb-4">Tags</h2>

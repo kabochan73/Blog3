@@ -1,20 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { apiFetch } from "@/shared/lib/api";
 import { clearToken, getToken } from "@/shared/lib/auth";
 
-const NAV_LINKS = [
-  { href: "/admin/posts/new", label: "New" },
-  { href: "/admin/posts", label: "Public" },
-  { href: "/admin/drafts", label: "Draft" },
-  { href: "/admin/tags", label: "Tags" },
-];
-
 export function AdminHeader() {
-  const pathname = usePathname();
   const router = useRouter();
 
   async function handleLogout() {
@@ -38,23 +30,7 @@ export function AdminHeader() {
           <h1 className="font-heading text-4xl font-bold">My Blog</h1>
         </Link>
         <nav className="flex items-center gap-6 text-xl font-medium">
-          {NAV_LINKS.map((link) => {
-            const isActive =
-              link.href === "/admin/posts"
-                ? pathname.startsWith(link.href) && !pathname.startsWith("/admin/posts/new")
-                : pathname.startsWith(link.href);
-
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={isActive ? "text-foreground text-2xl" : "text-foreground/50 hover:text-foreground"}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-          <button type="button" onClick={handleLogout} className="text-foreground/50 hover:text-foreground">
+          <button type="button" onClick={handleLogout} className="text-foreground/80 hover:text-foreground/60">
             Logout
           </button>
         </nav>
