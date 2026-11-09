@@ -4,8 +4,8 @@
 
 ## 画像ファイル
 
-- 保存場所: `backend/storage/app/public/images/{filename}`
-- Laravelの`public`ディスクを使用し、`php artisan storage:link`で`public/storage`に公開
+- `ImageUploadService`は`Storage::disk(config('filesystems.default'))`を使う。保存先ディスクは環境変数`FILESYSTEM_DISK`で切り替える（[docs/infra/railway-services.md](../infra/railway-services.md)参照）
+  - **ローカル（Docker Compose）**: `FILESYSTEM_DISK=public`。`backend/storage/app/public/images/{filename}`に保存し、`php artisan storage:link`で`public/storage`に公開。APIが返すURLは相対パス`/storage/images/{filename}`
+  - **本番（Railway）**: `FILESYSTEM_DISK=s3`。Railwayのbucket（S3互換）に保存し、APIが返すURLはbucketの公開URL（フルURL）
 - ファイル名: 衝突防止のため `{uuid}.{拡張子}`（アップロード時の元ファイル名は使わない）
-- APIが返す画像URL形式: `/storage/images/{filename}`
-- `posts`テーブルの`thumbnail`カラムにはこのURL形式の値を保存する
+- `posts`テーブルの`thumbnail`カラムには、上記いずれかの形式のURL値をそのまま保存する

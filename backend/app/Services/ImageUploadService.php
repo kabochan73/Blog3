@@ -18,7 +18,10 @@ class ImageUploadService
     /**
      * Resize (down only, preserving aspect ratio), compress, and store the uploaded image.
      *
-     * @return string The public URL path, e.g. "/storage/images/xxx.jpg".
+     * Uses the app's default filesystem disk (FILESYSTEM_DISK), so this resolves to the
+     * local "public" disk in development and the S3-compatible bucket in production.
+     *
+     * @return string The public URL, e.g. "/storage/images/xxx.jpg" locally or a bucket URL in production.
      */
     public function store(UploadedFile $file): string
     {
@@ -29,8 +32,9 @@ class ImageUploadService
         $encoded = $image->encodeUsingFormat($format, quality: self::QUALITY);
 
         $filename = Str::uuid().'.'.$format->fileExtension()->value;
-        Storage::disk('public')->put("images/{$filename}", $encoded->toString());
+        $disk = Storage::disk(config('filesystems.default'));
+        $disk->put("images/{$filename}", $encoded->toString());
 
-        return "/storage/images/{$filename}";
+        return $disk->url("images/{$filename}");
     }
 }
