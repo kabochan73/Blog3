@@ -15,9 +15,9 @@ export function useCreatePost() {
         method: "POST",
         body: values,
       }),
-    onSuccess: (post) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
-      router.push(`/admin/posts/${post.slug}/edit`);
+      router.push("/admin/posts");
     },
   });
 }

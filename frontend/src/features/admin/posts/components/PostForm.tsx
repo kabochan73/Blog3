@@ -151,13 +151,15 @@ export function PostForm({ initialValues, submitLabel, onSubmit, isSubmitting, e
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="bg-foreground px-6 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-60 disabled:opacity-50"
-      >
-        {submitLabel}
-      </button>
+      <div className="flex justify-end">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="bg-foreground px-6 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-60 disabled:opacity-50"
+        >
+          {submitLabel}
+        </button>
+      </div>
     </form>
   );
 }

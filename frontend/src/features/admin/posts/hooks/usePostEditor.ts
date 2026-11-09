@@ -20,11 +20,9 @@ export function usePostEditor(slug: string) {
         method: "PUT",
         body: values,
       }),
-    onSuccess: (post) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
-      if (post.slug !== slug) {
-        router.replace(`/admin/posts/${post.slug}/edit`);
-      }
+      router.push("/admin/posts");
     },
   });
 

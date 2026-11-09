@@ -16,9 +16,8 @@ vi.mock("@/shared/lib/api", async () => {
 });
 
 const pushMock = vi.fn();
-const replaceMock = vi.fn();
 vi.mock("next/navigation", () => ({
-  useRouter: () => ({ push: pushMock, replace: replaceMock }),
+  useRouter: () => ({ push: pushMock }),
 }));
 
 const formValues: PostFormValues = {
@@ -41,7 +40,6 @@ function createWrapper() {
 beforeEach(() => {
   adminApiFetchMock.mockReset();
   pushMock.mockClear();
-  replaceMock.mockClear();
 });
 
 describe("usePostEditor", () => {
@@ -54,7 +52,7 @@ describe("usePostEditor", () => {
     expect(adminApiFetchMock).toHaveBeenCalledWith("/api/admin/posts/example-post");
   });
 
-  it("does not redirect when the slug stays the same after updating", async () => {
+  it("redirects to the post list after updating", async () => {
     adminApiFetchMock
       .mockResolvedValueOnce({ id: 1, slug: "example-post" })
       .mockResolvedValueOnce({ id: 1, slug: "example-post" });
@@ -64,21 +62,7 @@ describe("usePostEditor", () => {
 
     result.current.updatePost.mutate(formValues);
 
-    await waitFor(() => expect(result.current.updatePost.isSuccess).toBe(true));
-    expect(replaceMock).not.toHaveBeenCalled();
-  });
-
-  it("redirects to the new slug when the slug changes after updating", async () => {
-    adminApiFetchMock
-      .mockResolvedValueOnce({ id: 1, slug: "example-post" })
-      .mockResolvedValueOnce({ id: 1, slug: "new-slug" });
-
-    const { result } = renderHook(() => usePostEditor("example-post"), { wrapper: createWrapper() });
-    await waitFor(() => expect(result.current.postQuery.isSuccess).toBe(true));
-
-    result.current.updatePost.mutate(formValues);
-
-    await waitFor(() => expect(replaceMock).toHaveBeenCalledWith("/admin/posts/new-slug/edit"));
+    await waitFor(() => expect(pushMock).toHaveBeenCalledWith("/admin/posts"));
   });
 
   it("redirects to the post list after deleting", async () => {
