@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { TagList } from "@/features/public/tags/components/TagList";
+import { AdminTagList } from "@/features/admin/tags/components/AdminTagList";
 
 export default function AdminWithSidebarLayout({ children }: { children: ReactNode }) {
   return (
@@ -34,7 +34,7 @@ export default function AdminWithSidebarLayout({ children }: { children: ReactNo
           </section>
           <section>
             <h2 className="font-heading mb-3 text-3xl font-bold border-b border-foreground pb-4">Tags</h2>
-            <TagList />
+            <AdminTagList />
           </section>
         </aside>
       </div>

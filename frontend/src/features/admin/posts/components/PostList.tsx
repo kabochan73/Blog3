@@ -6,8 +6,8 @@ import { resolveImageUrl } from "@/shared/lib/api";
 import { usePostsAdmin } from "../hooks/usePostsAdmin";
 import type { PostStatus } from "../types";
 
-export function PostList({ status }: { status: PostStatus }) {
-  const postsQuery = usePostsAdmin(status);
+export function PostList({ status, tag }: { status: PostStatus; tag?: string }) {
+  const postsQuery = usePostsAdmin(status, tag);
 
   if (postsQuery.isLoading) {
     return <p className="text-sm text-foreground/50">読み込み中...</p>;
