@@ -15,13 +15,13 @@ export async function TagList() {
   }
 
   return (
-    <nav className="flex flex-col gap-2 text-sm">
+    <nav className="flex flex-col text-base font-semibold">
       {tags.map((tag) => (
         <Link
           key={tag.name}
           href={`/tags/${tag.name}`}
           prefetch
-          className="text-foreground/70 hover:text-foreground hover:underline"
+          className="border-b border-foreground/40 py-2 text-foreground hover:text-foreground/60"
         >
           {tag.name}
         </Link>

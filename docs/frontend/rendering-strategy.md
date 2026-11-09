@@ -68,3 +68,4 @@ frontendは**Vercelにデプロイ**する（backend・PostgreSQL・bucketはRai
 
 - Webhook呼び出しが失敗しても記事・タグの保存自体は失敗させない（ログに残すだけ）。キューイングやリトライは行わない
 - シークレット（`REVALIDATE_SECRET`）はbackend（Railway）・frontend（Vercel）両方の環境変数に同じ値を設定して共有する
+- 呼び出し先URLは`REVALIDATE_INTERNAL_URL`（未設定時は`FRONTEND_URL`にフォールバック）。ローカルDocker Compose環境では、backendコンテナから見た`localhost`はbackendコンテナ自身を指しfrontendコンテナに到達できないため、`REVALIDATE_INTERNAL_URL=http://frontend:3000`（サービス名での到達）を設定する。本番（Railway→Vercel）はインターネット経由のため`FRONTEND_URL`のみで足りる

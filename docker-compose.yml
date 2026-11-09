@@ -25,6 +25,7 @@ services:
       DB_DATABASE: blog
       DB_USERNAME: blog
       DB_PASSWORD: password
+      REVALIDATE_INTERNAL_URL: http://frontend:3000
 
   nginx:
     image: nginx:alpine

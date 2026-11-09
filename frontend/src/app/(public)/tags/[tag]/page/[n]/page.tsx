@@ -4,6 +4,7 @@ import { PostList } from "@/features/public/posts/components/PostList";
 import type { PaginatedCollection, PostListItem } from "@/features/public/posts/types";
 import type { PublicTag } from "@/features/public/tags/types";
 import { publicApiFetch } from "@/shared/lib/api";
+import { decodeRouteParam } from "@/shared/lib/params";
 
 export const instant = false;
 
@@ -31,5 +32,5 @@ export default async function TagPostsPage({ params }: { params: Promise<{ tag: 
     notFound();
   }
 
-  return <PostList page={page} tag={tag} />;
+  return <PostList page={page} tag={decodeRouteParam(tag)} />;
 }
