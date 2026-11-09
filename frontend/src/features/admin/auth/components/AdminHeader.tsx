@@ -7,6 +7,7 @@ import { apiFetch } from "@/shared/lib/api";
 import { clearToken, getToken } from "@/shared/lib/auth";
 
 const NAV_LINKS = [
+  { href: "/admin/posts/new", label: "New" },
   { href: "/admin/posts", label: "Public" },
   { href: "/admin/drafts", label: "Draft" },
   { href: "/admin/tags", label: "Tags" },
@@ -31,22 +32,32 @@ export function AdminHeader() {
   }
 
   return (
-    <header className="border-b border-gray-200">
-      <div className="flex items-center justify-between px-6 py-3">
-        <nav className="flex gap-6 text-sm">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={pathname.startsWith(link.href) ? "font-semibold text-gray-900" : "text-gray-500"}
-            >
-              {link.label}
-            </Link>
-          ))}
+    <header className="border-b border-foreground">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
+        <Link href="/admin/posts" className="inline-block transition-opacity hover:opacity-60">
+          <h1 className="font-heading text-4xl font-bold">My Blog</h1>
+        </Link>
+        <nav className="flex items-center gap-6 text-xl font-medium">
+          {NAV_LINKS.map((link) => {
+            const isActive =
+              link.href === "/admin/posts"
+                ? pathname.startsWith(link.href) && !pathname.startsWith("/admin/posts/new")
+                : pathname.startsWith(link.href);
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={isActive ? "text-foreground text-2xl" : "text-foreground/50 hover:text-foreground"}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+          <button type="button" onClick={handleLogout} className="text-foreground/50 hover:text-foreground">
+            Logout
+          </button>
         </nav>
-        <button type="button" onClick={handleLogout} className="text-sm text-gray-500">
-          Logout
-        </button>
       </div>
     </header>
   );
