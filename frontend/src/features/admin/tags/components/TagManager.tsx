@@ -12,8 +12,8 @@ export function TagManager() {
   const [createFormKey, setCreateFormKey] = useState(0);
 
   return (
-    <div className="max-w-xl space-y-6">
-      <h1 className="text-lg font-semibold">タグ管理</h1>
+    <div className="mx-auto w-full max-w-2xl space-y-8 px-6 py-12">
+      <h1 className="font-heading border-b border-foreground pb-4 text-3xl font-bold">タグ管理</h1>
 
       <TagForm
         key={createFormKey}
@@ -23,12 +23,12 @@ export function TagManager() {
         onSubmit={({ name }) => createTag.mutate(name, { onSuccess: () => setCreateFormKey((k) => k + 1) })}
       />
 
-      {tagsQuery.isLoading && <p className="text-sm text-gray-500">読み込み中...</p>}
+      {tagsQuery.isLoading && <p className="text-sm text-foreground/50">読み込み中...</p>}
       {tagsQuery.isError && <p className="text-sm text-red-600">タグの取得に失敗しました</p>}
 
-      <ul className="divide-y divide-gray-200">
+      <ul className="divide-y divide-foreground/20">
         {tagsQuery.data?.map((tag) => (
-          <li key={tag.id} className="flex items-center justify-between py-2 text-sm">
+          <li key={tag.id} className="flex items-center justify-between py-3">
             {editingId === tag.id ? (
               <TagForm
                 submitLabel="保存"
@@ -40,14 +40,21 @@ export function TagManager() {
               />
             ) : (
               <>
-                <span>
-                  {tag.name} <span className="text-gray-400">({tag.count})</span>
+                <span className="flex items-center gap-3">
+                  <span className="font-medium">{tag.name}</span>
+                  <span className="rounded-full bg-foreground px-2 py-0.5 text-xs font-medium text-background">
+                    {tag.count}
+                  </span>
                 </span>
-                <span className="flex gap-3">
-                  <button type="button" onClick={() => setEditingId(tag.id)} className="text-gray-500">
+                <span className="flex gap-4 text-sm">
+                  <button
+                    type="button"
+                    onClick={() => setEditingId(tag.id)}
+                    className="text-foreground/60 hover:text-foreground"
+                  >
                     編集
                   </button>
-                  <button type="button" onClick={() => deleteTag.mutate(tag.id)} className="text-red-600">
+                  <button type="button" onClick={() => deleteTag.mutate(tag.id)} className="text-red-600 hover:text-red-800">
                     削除
                   </button>
                 </span>

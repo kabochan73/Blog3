@@ -26,18 +26,22 @@ export function TagForm({ defaultValues, onSubmit, onCancel, isPending, error, s
   }
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-1 items-center gap-2">
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-1 items-center gap-3">
       <input
         type="text"
         aria-label="タグ名"
         {...register("name")}
-        className="flex-1 rounded border border-gray-300 px-2 py-1 text-sm"
+        className="flex-1 border border-foreground/40 bg-transparent px-3 py-2 text-sm focus:border-foreground focus:outline-none"
       />
-      <button type="submit" disabled={isPending} className="text-sm text-gray-900 disabled:opacity-50">
+      <button
+        type="submit"
+        disabled={isPending}
+        className="bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-60 disabled:opacity-50"
+      >
         {submitLabel}
       </button>
       {onCancel && (
-        <button type="button" onClick={onCancel} className="text-sm text-gray-500">
+        <button type="button" onClick={onCancel} className="text-sm text-foreground/60 hover:text-foreground">
           キャンセル
         </button>
       )}
