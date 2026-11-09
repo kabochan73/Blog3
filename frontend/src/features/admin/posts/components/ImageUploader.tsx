@@ -37,7 +37,7 @@ export function ImageUploader({ onUploaded, label = "画像を選択" }: ImageUp
 
   return (
     <div>
-      <label htmlFor={inputId} className="inline-block cursor-pointer text-sm text-gray-700 underline">
+      <label htmlFor={inputId} className="inline-block cursor-pointer text-sm text-foreground underline hover:text-foreground/60">
         {isUploading ? "アップロード中..." : label}
       </label>
       <input

@@ -13,8 +13,8 @@ export default function NewPostPage() {
   }
 
   return (
-    <div className="space-y-4">
-      <h1 className="text-lg font-semibold">記事の新規作成</h1>
+    <div className="mx-auto w-full max-w-5xl space-y-8 px-6 py-12">
+      <h1 className="font-heading border-b border-foreground pb-4 text-3xl font-bold">記事の新規作成</h1>
       <PostForm
         submitLabel="作成"
         onSubmit={handleSubmit}

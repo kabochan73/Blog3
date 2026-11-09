@@ -41,8 +41,8 @@ describe("TagPicker", () => {
 
     renderWithClient(<TagPicker value={["laravel"]} onChange={vi.fn()} />);
 
-    expect(await screen.findByRole("button", { name: "laravel" })).toHaveClass("bg-gray-900");
-    expect(screen.getByRole("button", { name: "nextjs" })).not.toHaveClass("bg-gray-900");
+    expect(await screen.findByRole("button", { name: "laravel" })).toHaveClass("bg-foreground");
+    expect(screen.getByRole("button", { name: "nextjs" })).not.toHaveClass("bg-foreground");
   });
 
   it("adds a tag to the selection when clicked", async () => {

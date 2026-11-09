@@ -23,7 +23,7 @@ export default function EditPostPage({ params }: { params: Promise<{ slug: strin
   }
 
   if (postQuery.isLoading) {
-    return <p className="text-sm text-gray-500">読み込み中...</p>;
+    return <p className="text-sm text-foreground/50">読み込み中...</p>;
   }
 
   if (postQuery.isError || !postQuery.data) {
@@ -33,14 +33,14 @@ export default function EditPostPage({ params }: { params: Promise<{ slug: strin
   const post = postQuery.data;
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h1 className="text-lg font-semibold">記事の編集</h1>
+    <div className="mx-auto w-full max-w-5xl space-y-8 px-6 py-12">
+      <div className="flex items-center justify-between border-b border-foreground pb-4">
+        <h1 className="font-heading text-3xl font-bold">記事の編集</h1>
         <button
           type="button"
           onClick={handleDelete}
           disabled={deletePost.isPending}
-          className="text-sm text-red-600"
+          className="text-sm text-red-600 hover:text-red-800"
         >
           削除
         </button>

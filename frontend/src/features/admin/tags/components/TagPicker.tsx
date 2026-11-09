@@ -19,7 +19,7 @@ export function TagPicker({ value, onChange }: TagPickerProps) {
   }
 
   if (tagsQuery.isLoading) {
-    return <p className="text-sm text-gray-500">タグを読み込み中...</p>;
+    return <p className="text-sm text-foreground/50">タグを読み込み中...</p>;
   }
 
   if (tagsQuery.isError) {
@@ -29,7 +29,7 @@ export function TagPicker({ value, onChange }: TagPickerProps) {
   const tags = tagsQuery.data ?? [];
 
   if (tags.length === 0) {
-    return <p className="text-sm text-gray-500">タグがありません。先に「タグ管理」から作成してください。</p>;
+    return <p className="text-sm text-foreground/50">タグがありません。先に「タグ管理」から作成してください。</p>;
   }
 
   return (
@@ -43,8 +43,8 @@ export function TagPicker({ value, onChange }: TagPickerProps) {
             onClick={() => toggle(tag.name)}
             className={
               selected
-                ? "rounded-full bg-gray-900 px-3 py-1 text-sm text-white"
-                : "rounded-full border border-gray-300 px-3 py-1 text-sm text-gray-700"
+                ? "rounded-full bg-foreground px-3 py-1 text-sm font-medium text-background"
+                : "rounded-full border border-foreground/40 px-3 py-1 text-sm text-foreground hover:border-foreground"
             }
           >
             {tag.name}

@@ -48,22 +48,22 @@ export function PostForm({ initialValues, submitLabel, onSubmit, isSubmitting, e
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-3xl space-y-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="max-w-5xl space-y-6">
       <div className="space-y-1">
-        <label htmlFor="title" className="block text-sm font-medium">
+        <label htmlFor="title" className="block text-sm font-medium text-foreground/80">
           タイトル
         </label>
         <input
           id="title"
           type="text"
           {...register("title")}
-          className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+          className="w-full border border-foreground/40 bg-transparent px-3 py-2 text-sm focus:border-foreground focus:outline-none"
         />
         {errors.title && <p className="text-xs text-red-600">{errors.title.message}</p>}
       </div>
 
       <div className="space-y-1">
-        <label htmlFor="slug" className="block text-sm font-medium">
+        <label htmlFor="slug" className="block text-sm font-medium text-foreground/80">
           スラッグ
         </label>
         <input
@@ -71,13 +71,13 @@ export function PostForm({ initialValues, submitLabel, onSubmit, isSubmitting, e
           type="text"
           {...register("slug")}
           onChange={(event) => setValue("slug", normalizeSlug(event.target.value), { shouldValidate: true })}
-          className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+          className="w-full border border-foreground/40 bg-transparent px-3 py-2 text-sm focus:border-foreground focus:outline-none"
         />
         {errors.slug && <p className="text-xs text-red-600">{errors.slug.message}</p>}
       </div>
 
       <div className="space-y-1">
-        <span className="block text-sm font-medium">ステータス</span>
+        <span className="block text-sm font-medium text-foreground/80">ステータス</span>
         <div className="flex gap-4 text-sm">
           <label className="flex items-center gap-1.5">
             <input type="radio" value="draft" {...register("status")} />
@@ -91,7 +91,7 @@ export function PostForm({ initialValues, submitLabel, onSubmit, isSubmitting, e
       </div>
 
       <div className="space-y-1">
-        <span className="block text-sm font-medium">タグ</span>
+        <span className="block text-sm font-medium text-foreground/80">タグ</span>
         <Controller
           name="tags"
           control={control}
@@ -100,7 +100,7 @@ export function PostForm({ initialValues, submitLabel, onSubmit, isSubmitting, e
       </div>
 
       <div className="space-y-1">
-        <label htmlFor="thumbnail" className="block text-sm font-medium">
+        <label htmlFor="thumbnail" className="block text-sm font-medium text-foreground/80">
           サムネイル画像URL（任意）
         </label>
         <div className="flex items-center gap-3">
@@ -108,7 +108,7 @@ export function PostForm({ initialValues, submitLabel, onSubmit, isSubmitting, e
             id="thumbnail"
             type="text"
             {...register("thumbnail")}
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full border border-foreground/40 bg-transparent px-3 py-2 text-sm focus:border-foreground focus:outline-none"
           />
           <ImageUploader onUploaded={handleThumbnailUploaded} label="アップロード" />
         </div>
@@ -117,26 +117,26 @@ export function PostForm({ initialValues, submitLabel, onSubmit, isSubmitting, e
           <img
             src={thumbnail.startsWith("/") ? `${API_BASE_URL}${thumbnail}` : thumbnail}
             alt="サムネイルプレビュー"
-            className="mt-2 h-32 w-auto rounded border border-gray-200"
+            className="mt-2 aspect-[2/1] w-48 object-cover"
           />
         )}
       </div>
 
       <div className="space-y-1">
-        <label htmlFor="excerpt" className="block text-sm font-medium">
+        <label htmlFor="excerpt" className="block text-sm font-medium text-foreground/80">
           概要（任意）
         </label>
         <textarea
           id="excerpt"
           rows={2}
           {...register("excerpt")}
-          className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+          className="w-full border border-foreground/40 bg-transparent px-3 py-2 text-sm focus:border-foreground focus:outline-none"
         />
       </div>
 
       <div className="space-y-1" data-color-mode="light">
         <div className="flex items-center justify-between">
-          <span className="block text-sm font-medium">本文</span>
+          <span className="block text-sm font-medium text-foreground/80">本文</span>
           <ImageUploader onUploaded={handleContentImageUploaded} label="本文に画像を挿入" />
         </div>
         <Controller
@@ -154,7 +154,7 @@ export function PostForm({ initialValues, submitLabel, onSubmit, isSubmitting, e
       <button
         type="submit"
         disabled={isSubmitting}
-        className="rounded bg-gray-900 px-4 py-2 text-sm text-white disabled:opacity-50"
+        className="bg-foreground px-6 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-60 disabled:opacity-50"
       >
         {submitLabel}
       </button>
