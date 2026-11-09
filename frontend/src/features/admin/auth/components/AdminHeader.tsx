@@ -27,7 +27,7 @@ export function AdminHeader() {
       // token already invalid/expired — clear locally and move on regardless
     }
     clearToken();
-    router.push("/login");
+    router.push("/");
   }
 
   return (
