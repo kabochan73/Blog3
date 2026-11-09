@@ -15,7 +15,7 @@ export function AdminTagList() {
   }
 
   return (
-    <nav className="flex flex-col gap-1 text-base font-semibold">
+    <nav className="flex flex-col gap-1 text-base">
       {tags.map((tag) => {
         const isActive = currentTag === tag.name;
 
@@ -25,7 +25,7 @@ export function AdminTagList() {
             href={isActive ? "/admin/posts" : `/admin/posts?tag=${tag.name}`}
             className={
               isActive
-                ? "border-b border-foreground/40 bg-foreground py-1 pl-2 font-medium text-background"
+                ? "border-b border-foreground/40 bg-foreground/80 py-1 pl-2 font-medium text-background"
                 : "border-b border-foreground/40 py-1 pl-2 text-foreground hover:text-foreground/60"
             }
           >

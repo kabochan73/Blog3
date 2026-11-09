@@ -5,7 +5,8 @@ export default async function AdminDraftsPage({ searchParams }: { searchParams: 
 
   return (
     <div className="space-y-8">
-      <h1 className="font-heading border-b border-foreground pb-4 text-3xl font-bold">下書き</h1>
+      <h2 className="font-heading text-4xl font-bold">Drafts Article</h2>
+      <p className="font-light mb-6 pb-4 text-foreground/80">学習記録や日々の学びなどを投稿しています。</p>
       <PostList status="draft" tag={tag} />
     </div>
   );

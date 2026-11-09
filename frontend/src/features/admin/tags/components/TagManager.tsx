@@ -26,9 +26,9 @@ export function TagManager() {
       {tagsQuery.isLoading && <p className="text-sm text-foreground/50">読み込み中...</p>}
       {tagsQuery.isError && <p className="text-sm text-red-600">タグの取得に失敗しました</p>}
 
-      <ul className="divide-y divide-foreground/20">
+      <ul className="flex flex-col gap-1">
         {tagsQuery.data?.map((tag) => (
-          <li key={tag.id} className="flex items-center justify-between py-3">
+          <li key={tag.id} className="flex items-center justify-between border-b border-foreground/40 py-1 pl-2">
             {editingId === tag.id ? (
               <TagForm
                 submitLabel="保存"
