@@ -21,7 +21,15 @@ export async function generateStaticParams() {
     }),
   );
 
-  return params.flat();
+  const flat = params.flat();
+
+  // Cache Components requires at least one param; fall back to a placeholder
+  // when no tags exist yet (e.g. a fresh production database).
+  if (flat.length === 0) {
+    return [{ tag: "__placeholder__", n: "1" }];
+  }
+
+  return flat;
 }
 
 export default async function TagPostsPage({ params }: { params: Promise<{ tag: string; n: string }> }) {

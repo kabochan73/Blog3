@@ -14,6 +14,12 @@ export const instant = false;
 export async function generateStaticParams() {
   const { data: posts } = await publicApiFetch<PaginatedCollection<PostListItem>>("/api/posts?per_page=9999");
 
+  // Cache Components requires at least one param; fall back to a placeholder
+  // when no posts exist yet (e.g. a fresh production database).
+  if (posts.length === 0) {
+    return [{ slug: "__placeholder__" }];
+  }
+
   return posts.map((post) => ({ slug: post.slug }));
 }
 

@@ -8,6 +8,12 @@ export const instant = false;
 export async function generateStaticParams() {
   const tags = await publicApiFetch<PublicTag[]>("/api/tags");
 
+  // Cache Components requires at least one param; fall back to a placeholder
+  // when no tags exist yet (e.g. a fresh production database).
+  if (tags.length === 0) {
+    return [{ tag: "__placeholder__" }];
+  }
+
   return tags.map((tag) => ({ tag: tag.name }));
 }
 
