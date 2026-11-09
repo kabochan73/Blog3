@@ -18,14 +18,14 @@ const components: Components = {
       {children}
     </h3>
   ),
-  p: ({ children }) => <p className="my-4 leading-7">{children}</p>,
+  p: ({ children }) => <p className="my-4 text-lg leading-8">{children}</p>,
   a: ({ href, children }) => (
     <a href={href} className="underline hover:no-underline" target="_blank" rel="noopener noreferrer">
       {children}
     </a>
   ),
-  ul: ({ children }) => <ul className="my-4 list-disc pl-6">{children}</ul>,
-  ol: ({ children }) => <ol className="my-4 list-decimal pl-6">{children}</ol>,
+  ul: ({ children }) => <ul className="my-4 list-disc pl-6 text-lg">{children}</ul>,
+  ol: ({ children }) => <ol className="my-4 list-decimal pl-6 text-lg">{children}</ol>,
   li: ({ children }) => <li className="my-1">{children}</li>,
   blockquote: ({ children }) => (
     <blockquote className="my-4 border-l-4 border-foreground/20 pl-4 text-foreground/70">{children}</blockquote>

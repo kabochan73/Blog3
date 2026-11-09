@@ -1,5 +1,6 @@
 import { cacheLife } from "next/cache";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { MarkdownRenderer } from "@/features/public/posts/components/MarkdownRenderer";
@@ -52,13 +53,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   return (
     <article className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-12">
       <div className="flex flex-col gap-2">
-        <h1 className="font-heading text-3xl font-bold tracking-tight">{post.title}</h1>
-        <div className="mt-3 flex items-center gap-3 text-sm text-foreground">
-          <time dateTime={post.created_at}>{new Date(post.created_at).toLocaleDateString("ja-JP")}</time>
+        <h1 className="font-heading text-4xl font-bold tracking-tight">{post.title}</h1>
+        <div className="mt-3 flex items-center gap-3 text-foreground/80">
+          <time dateTime={post.created_at} className="text-xl font-light">
+            {new Date(post.created_at).toLocaleDateString("ja-JP")}
+          </time>
           {post.tags.length > 0 && (
             <ul className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
-                <li key={tag} className="rounded-full bg-foreground px-3 py-1 text-background font-medium">
+                <li key={tag} className="rounded-full bg-foreground px-3 pb-0.5 text-sm text-background font-medium">
                   {tag}
                 </li>
               ))}
@@ -78,6 +81,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       )}
       <TableOfContents headings={extractHeadings(post.content)} />
       <MarkdownRenderer content={post.content} />
+      <Link
+        href="/"
+        className="mt-6 self-end bg-foreground/80 px-6 py-3 font-medium text-background transition-opacity hover:opacity-60"
+      >
+        Back to Home
+      </Link>
     </article>
   );
 }

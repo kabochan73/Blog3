@@ -23,12 +23,14 @@ export function PostCard({ post }: { post: PostListItem }) {
           </Link>
         </h2>
         {post.excerpt && <p className="text-foreground/80 text-xl font-light pb-4">{post.excerpt}</p>}
-        <div className="mt-3 flex items-center gap-3 text-sm text-foreground">
-          <time dateTime={post.created_at}>{new Date(post.created_at).toLocaleDateString("ja-JP")}</time>
+        <div className="mt-3 flex items-center gap-3 text-foreground/80">
+          <time dateTime={post.created_at} className="text-xl font-light">
+            {new Date(post.created_at).toLocaleDateString("ja-JP")}
+          </time>
           {post.tags.length > 0 && (
             <ul className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
-                <li key={tag} className="rounded-full bg-foreground px-3 py-1 text-background font-medium">
+                <li key={tag} className="rounded-full bg-foreground px-3 pb-0.5 text-sm text-background font-medium">
                   {tag}
                 </li>
               ))}
