@@ -22,7 +22,9 @@ export async function PostList({ page, tag }: { page: number; tag?: string }) {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
+      <h2 className="font-heading text-4xl font-bold">Article</h2>
+      <p className="font-light mb-6 pb-4 text-foreground/80">学習記録や日々の学びなどを投稿しています。</p>
       {posts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}

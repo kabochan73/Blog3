@@ -50,7 +50,7 @@ const components: Components = {
 
 export function MarkdownRenderer({ content }: { content: string }) {
   return (
-    <div>
+    <div className="ml-4">
       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={components}>
         {content}
       </ReactMarkdown>

@@ -5,16 +5,16 @@ import type { PostListItem } from "../types";
 
 export function PostCard({ post }: { post: PostListItem }) {
   return (
-    <article className="relative flex gap-6 border-b border-foreground pb-6 transition-opacity hover:opacity-60">
+    <article className="relative flex gap-6 mb-4 border-b border-foreground pb-6 transition-opacity hover:opacity-60">
       {post.thumbnail ? (
         // eslint-disable-next-line @next/next/no-img-element -- source is the Laravel backend, not optimizable by next/image
         <img
           src={resolveImageUrl(post.thumbnail)}
           alt=""
-          className="aspect-[4/3] w-32 shrink-0 object-cover sm:w-44"
+          className="aspect-[4/3] w-32 shrink-0 ml-6 object-cover sm:w-44"
         />
       ) : (
-        <div className="aspect-[4/3] w-32 shrink-0 bg-foreground sm:w-44" />
+        <div className="aspect-[4/3] w-32 shrink-0 ml-6 bg-foreground sm:w-44" />
       )}
       <div className="flex min-w-0 flex-1 flex-col gap-2">
         <h2 className="font-heading text-3xl font-bold tracking-tight">
