@@ -1,6 +1,5 @@
 import { cacheLife } from "next/cache";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { MarkdownRenderer } from "@/features/public/posts/components/MarkdownRenderer";
@@ -52,33 +51,31 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   return (
     <article className="flex flex-col gap-6">
-      {post.thumbnail ? (
-        // eslint-disable-next-line @next/next/no-img-element -- source is the Laravel backend, not optimizable by next/image
-        <img
-          src={resolveImageUrl(post.thumbnail)}
-          alt=""
-          className="aspect-[2/1] w-full rounded-lg object-cover"
-        />
-      ) : (
-        <div className="aspect-[2/1] w-full rounded-lg bg-foreground/5" />
-      )}
       <div className="flex flex-col gap-2">
         <h1 className="font-heading text-3xl font-bold tracking-tight">{post.title}</h1>
-        <div className="flex items-center gap-3 text-sm text-foreground/50">
+        <div className="mt-3 flex items-center gap-3 text-sm text-foreground">
           <time dateTime={post.created_at}>{new Date(post.created_at).toLocaleDateString("ja-JP")}</time>
           {post.tags.length > 0 && (
             <ul className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
-                <li key={tag}>
-                  <Link href={`/tags/${tag}`} className="hover:underline">
-                    #{tag}
-                  </Link>
+                <li key={tag} className="rounded-full bg-foreground px-3 py-1 text-background font-medium">
+                  {tag}
                 </li>
               ))}
             </ul>
           )}
         </div>
       </div>
+      {post.thumbnail ? (
+        // eslint-disable-next-line @next/next/no-img-element -- source is the Laravel backend, not optimizable by next/image
+        <img
+          src={resolveImageUrl(post.thumbnail)}
+          alt=""
+          className="aspect-[2/1] w-full object-cover"
+        />
+      ) : (
+        <div className="aspect-[2/1] w-full bg-foreground/5" />
+      )}
       <TableOfContents headings={extractHeadings(post.content)} />
       <MarkdownRenderer content={post.content} />
     </article>

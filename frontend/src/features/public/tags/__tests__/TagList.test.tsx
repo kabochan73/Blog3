@@ -9,6 +9,10 @@ vi.mock("next/cache", () => ({
   cacheLife: vi.fn(),
 }));
 
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/",
+}));
+
 vi.mock("@/shared/lib/api", async () => {
   const actual = await vi.importActual<typeof import("@/shared/lib/api")>("@/shared/lib/api");
   return {

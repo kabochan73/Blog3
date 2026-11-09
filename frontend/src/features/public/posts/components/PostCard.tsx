@@ -28,7 +28,7 @@ export function PostCard({ post }: { post: PostListItem }) {
           {post.tags.length > 0 && (
             <ul className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
-                <li key={tag} className="rounded-full bg-foreground px-3 py-1 text-background font-semibold">
+                <li key={tag} className="rounded-full bg-foreground px-3 py-1 text-background font-medium">
                   {tag}
                 </li>
               ))}
